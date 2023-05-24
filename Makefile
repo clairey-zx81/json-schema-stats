@@ -17,7 +17,7 @@ clean.db:
 .PHONY: clean
 clean: clean.db
 	$(RM) *~ .load .png
-	$(RM) *.csv *.model.check *.list *.size *.sorted *.err *.png
+	$(RM) *.csv *.model.check *.list *.size *.sorted *.err *.png *.out
 	$(MAKE) -C $(CORPUS) clean
 
 .PHONY: load
