@@ -2,10 +2,8 @@
 
 This directory contains Shell, Python and SQL scripts used by:
 
-- An Analysis of Defects in Public JSON Schemas
-
-  Claire Yannou-Medrala and Fabien Coelho
-
+- An Analysis of Defects in Public JSON Schemas  
+  Claire Yannou-Medrala and Fabien Coelho  
   Tech. Report A/794/CRI, Mines Paris - PSL.
 
 ## Installation
