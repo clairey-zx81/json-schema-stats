@@ -11,4 +11,4 @@ source extracts.sh
 extract \
   "bad mix in table-schema" \
   ".properties.foreignKeys.items.oneOf[0].properties.fields.items" \
-  ../gits/VRAC/table-schema.BROKEN.json
+  ../YAC/corpus/Misc/VRAC/table-schema.BROKEN.json
