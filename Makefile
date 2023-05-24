@@ -1,7 +1,7 @@
 SHELL	= /bin/bash
 .ONESHELL:
 
-DB	= stats
+DB	= json-schema-stats
 CORPUS  = ../YAC/corpus
 LIST    = $(CORPUS)/schema.list
 
