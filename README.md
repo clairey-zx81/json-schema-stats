@@ -22,6 +22,7 @@ source venv/bin/activate
 pip install -U pip
 # pip install git+https://github.com/clairey-zx81/json-model.git
 pip install file:./json-model
+pip install matplotlib
 ```
 
 ## Compute Stats
