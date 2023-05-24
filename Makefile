@@ -77,8 +77,8 @@ count: $(LIST)
 png: .png
 
 .png: load.out
-	psql stats < keywords.sql
-	psql stats < stats-graph.sql
+	psql $(DB) < keywords.sql
+	psql $(DB) < stats-graph.sql
 	./graph-histo.py graph-size
 	./graph-plot.py graph-kw-petit
 	./graph-plot.py graph-kw-grand
