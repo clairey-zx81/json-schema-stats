@@ -1,0 +1,1 @@
+\copy SchemaStats(vm1, vm1n, vm2, vm2n, vm3, vm3n, vm3f, vm4, vm4n, vm4f, vm6, vm6f, vm7, vm7f, vm8, vm8f, vm9, vm9f, vmn, vmnf, vmt, version, chemin, source, rhash, nhash, depth, nb_nulls, nb_bools, nb_ints, nb_nums, nb_strings, nb_array, nb_object, nb_items, nb_props, nb_strlens, json_length, js_stats) FROM 'schema-sorted.csv' WITH (FORMAT 'csv', DELIMITER ',')

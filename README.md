@@ -1,1 +1,3 @@
-# JSON Schema Stats
+# JSON Schema Statistics
+
+TODO explain
