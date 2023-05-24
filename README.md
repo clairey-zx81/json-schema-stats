@@ -10,10 +10,7 @@ Tech. Report A/794/CRI, Mines Paris - PSL.
 
 ```shell
 # clone corpus and tools
-git clone https://github.com/clairey-zx81/yac.git YAC
-cd YAC
-git submodule update --init
-cd ..
+git clone --recurse-submodules https://github.com/clairey-zx81/yac.git YAC
 git clone https://github.com/clairey-zx81/json-model.git json-model
 git clone https://github.com/clairey-zx81/json-schema-stats.git stats
 # create python3 venv
