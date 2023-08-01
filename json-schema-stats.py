@@ -773,7 +773,8 @@ def _json_schema_stats_rec(
                 log.warning(f"unexpected: {prop}")
 
             # unknow keyword, try subschemas for draft 01-04
-            if isinstance(val, dict):
+            # this may result in false positive, eg for OpenAPI "example"
+            if isinstance(val, dict) and prop != "example":
                 _json_schema_stats_rec(val, lpath, collection, defs, is_logic=is_logic)
 
             # FIXME because of extensions any keyword should be ignored,
@@ -1056,10 +1057,12 @@ def _json_schema_stats_rec(
     # no type declarations *BUT* some type hints
     # NOTE *direct* definitions are skipped, should be triggered when/if used
     # TODO <= 2? other?
-    if not is_defs and not is_logic and len(types) == 7:
+    if len(types) == 7:
         type_hints = hints.difference({"meta", "combi", "hyper", "alone"})
-        if len(type_hints) == 1:
-            collectErr(collection, "missing type declaration", f"{type_hints}", path)
+        if not is_defs and not is_logic and len(type_hints) == 1:
+                collectErr(collection, "missing type declaration", f"{type_hints}", path)
+        elif len(type_hints) == 0 and len(path) > 1:
+            collectErr(collection, "suspicious empty type", "*", path)
 
     # log.debug(f"mixins: {mixins}")
     mix = "*-" + "-".join(sorted(types)) + "/" + "-".join(sorted(hints))
