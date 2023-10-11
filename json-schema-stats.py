@@ -4,6 +4,9 @@
 # - FIXME dangling refs with - or . chars?
 # - many lists shoud be sets
 # - change vm* format? collect where/why??
+# - https://github.com/orgs/json-schema-org/discussions/323
+# - https://github.com/json-schema-org/json-schema-spec/issues/1079
+# - https://github.com/ssilverman/snowy-json#the-linter
 
 import re
 import json
