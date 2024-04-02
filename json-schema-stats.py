@@ -175,7 +175,7 @@ OPENAPI_310_KEYWORDS = [
 # collected sets need to be changed to lists for json serialization
 SETS = [
     "<typos-keywords>", "<typos-keywords-where>", "<unknown-keywords>",
-    "<errors>", "<bad-properties-nesting-where>", "<openapi>",
+    "<errors>", "<bad-properties-nesting-where>", "<openapi>", "<extensions>",
 ]
 
 # all expected schema keys to initialize
@@ -764,7 +764,9 @@ def _json_schema_stats_rec(
             collection[prop] += 1
         else:
             # count typos and unknown and keep track of openapi
-            if prop in OPENAPI_310_KEYWORDS:
+            if prop.startswith("x-"):
+                collectSet(collection, "<extensions>", prop)
+            elif prop in OPENAPI_310_KEYWORDS:
                 collectSet(collection, "<openapi>", prop)
             elif prop in SCHEMA_KEYS_TYPOS:
                 collection["<typos>"] += 1
@@ -777,7 +779,7 @@ def _json_schema_stats_rec(
 
             # unknow keyword, try subschemas for draft 01-04
             # this may result in false positive, eg for OpenAPI "example"
-            if isinstance(val, dict) and prop != "example":
+            if isinstance(val, dict) and prop != "example" and not prop.startswith("x-"):
                 _json_schema_stats_rec(val, lpath, collection, defs, is_logic=is_logic)
 
             # FIXME because of extensions any keyword should be ignored,
