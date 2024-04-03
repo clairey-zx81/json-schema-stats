@@ -165,6 +165,7 @@ FORMATS = [
     "color", "phone",
 ]
 
+# NOTE there are other formats in other OpenAPI versions?
 OPENAPI_310_FORMATS = [
     "int32", "int64", "float", "double", "password"
 ]
