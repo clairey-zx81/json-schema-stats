@@ -25,6 +25,7 @@ log.setLevel(logging.INFO)
 # handle options and arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--model-dir", help="JSON Model directory")
+ap.add_argument("-n", "--no-csv", action="store_true", help="Generate JSON output instead of CSV")
 ap.add_argument("schemas", nargs="*", help="JSON Schema to analyze")
 args = ap.parse_args()
 
@@ -1158,7 +1159,8 @@ def normalize_ods(fn, schema):
 
 import sys
 import csv
-csv_out = csv.writer(sys.stdout)
+
+csv_out = None if args.no_csv else csv.writer(sys.stdout)
 
 import hashlib
 
@@ -1250,8 +1252,11 @@ for fn in args.schemas:
                 ]
                 csv_out.writerow(row)
             else:
-                print(f"// input: {fn}")
-                print(f"// {json_metrics(jdata, JsonType.SCHEMA)}")
+                # print(f"// input: {fn}")
+                # print(f"// {json_metrics(jdata, JsonType.SCHEMA)}")
+                # print(json.dumps(small, sort_keys=True, indent=2))
+                small["<input-file>"] = fn
+                small["<json-metrics>"] = json_metrics(jdata, JsonType.SCHEMA)
                 print(json.dumps(small, sort_keys=True, indent=2))
         except Exception as e:
             log.error(f"{fn}: {e}", exc_info=True)
