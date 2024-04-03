@@ -14,7 +14,7 @@ import logging
 import argparse
 from urllib.parse import unquote as url_unquote
 
-from json_model.utils import JsonType, json_metrics, is_regex
+from json_model.utils import JsonType, json_metrics, json_metrics_raw, is_regex
 from json_model.compiler import compileModel, distinct_values
 
 logging.basicConfig()
@@ -781,7 +781,7 @@ def _json_schema_stats_rec(
 
             # unknow keyword, try subschemas for draft 01-04
             # this may result in false positive, eg for OpenAPI "example"
-            if isinstance(val, dict) and prop != "example" and not prop.startswith("x-"):
+            if isinstance(val, dict) and prop not in ("example", "discriminator") and not prop.startswith("x-"):
                 _json_schema_stats_rec(val, lpath, collection, defs, is_logic=is_logic)
 
             # FIXME because of extensions any keyword should be ignored,
@@ -1257,7 +1257,7 @@ for fn in args.schemas:
                 # print(f"// {json_metrics(jdata, JsonType.SCHEMA)}")
                 # print(json.dumps(small, sort_keys=True, indent=2))
                 small["<input-file>"] = fn
-                small["<json-metrics>"] = json_metrics(jdata, JsonType.SCHEMA)
+                small["<json-metrics>"] = json_metrics_raw(jdata, JsonType.SCHEMA)
                 print(json.dumps(small, sort_keys=True, indent=2))
         except Exception as e:
             log.error(f"{fn}: {e}", exc_info=True)
