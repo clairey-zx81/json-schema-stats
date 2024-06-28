@@ -16,7 +16,7 @@ from urllib.parse import unquote as url_unquote
 
 from json_model.stats import JsonType, json_metrics, json_metrics_raw
 from json_model.utils import is_regex, distinct_values
-from json_model.compiler import compileModel
+from json_model.dynamic_compiler import compileModel
 
 logging.basicConfig()
 log = logging.getLogger("stats")
