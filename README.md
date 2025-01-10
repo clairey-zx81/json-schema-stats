@@ -6,6 +6,10 @@ This directory contains Shell, Python and SQL scripts used by:
   Claire Yannou-Medrala and Fabien Coelho  
   Tech. Report A/794/CRI, Mines Paris - PSL.
 
+## TODO
+
+Ajouter une option pour lister des attributs à ignorer (eg extensions).
+
 ## Installation
 
 ```shell
