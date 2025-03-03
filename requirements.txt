@@ -1,0 +1,2 @@
+git+https://github.com/clairey-zx81/json-model.git
+git+https://github.com/zx80/json-schema-utils.git

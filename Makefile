@@ -44,6 +44,16 @@ P	= 10
 schema.list: $(LIST)
 	sed -e 's,^\./,$(CORPUS)/,' < $< > $@
 
+.PHONY: dev
+dev:
+	python -m venv venv
+	source venv/bin/activate
+	pip install -r requirements.txt
+
+.PHONY: clean.dev
+clean.dev:
+	$(RM) -r venv
+
 # where models can be found
 MODELS  = ../json-model/models
 
